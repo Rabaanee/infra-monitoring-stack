@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: rabaanee/deploy-tracker
+  tag: "v1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 5000
+  metricsPort: 5000
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "200m"
+
+serviceMonitor:
+  enabled: true
+  interval: 15s
+  path: /metrics
